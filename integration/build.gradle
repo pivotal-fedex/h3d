@@ -1,0 +1,29 @@
+apply plugin: 'java'
+
+ext {
+    fluentleniumVersion = project.properties['fluentlenium.version']
+    seleniumVersion = project.properties['selenium.version']
+}
+repositories {
+    jcenter()
+}
+
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+}
+
+dependencies {
+    testCompile("junit:junit:4.12")
+    testCompile("com.squareup.okhttp3:okhttp:3.10.0")
+    testCompile("org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}")
+    testCompile("org.fluentlenium:fluentlenium-junit:${fluentleniumVersion}")
+    testCompile("org.fluentlenium:fluentlenium-assertj:${fluentleniumVersion}")
+}
+
+task integrationTest(type:JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+
+    main = "com.fedex.h3d.TestClass"
+}

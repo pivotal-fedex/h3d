@@ -14,3 +14,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 .idea
+*/build
+*/resources/public/*.css
+*/resources/public/*.js
+!keep
